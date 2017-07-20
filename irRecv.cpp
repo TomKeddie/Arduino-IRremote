@@ -90,6 +90,11 @@ int  IRrecv::decode (decode_results *results)
 	if (decodeLegoPowerFunctions(results))  return true ;
 #endif
 
+#ifdef DECODE_JAPANESE
+    DBG_PRINTLN("Attempting Japanese decode");
+    if (decodeJapanese(results))  return true ;
+#endif
+
 	// decodeHash returns a hash on any input.
 	// Thus, it needs to be last in the list.
 	// If you add any decodes, add them before this.

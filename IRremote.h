@@ -79,6 +79,9 @@
 #define DECODE_LEGO_PF       0 // NOT WRITTEN
 #define SEND_LEGO_PF         1
 
+#define DECODE_JAPANESE      1
+#define SEND_JAPANESE        1
+
 //------------------------------------------------------------------------------
 // When sending a Pronto code we request to send either the "once" code
 //                                                   or the "repeat" code
@@ -119,6 +122,7 @@ typedef
 		DENON,
 		PRONTO,
 		LEGO_PF,
+        JAPANESE,
 	}
 decode_type_t;
 
@@ -251,6 +255,10 @@ class IRrecv
 #		if DECODE_LEGO_PF
 			bool  decodeLegoPowerFunctions (decode_results *results) ;
 #		endif
+//......................................................................
+#       if DECODE_JAPANESE
+          bool    decodeJapanese (decode_results *results) ;
+#       endif
 } ;
 
 //------------------------------------------------------------------------------
@@ -339,6 +347,10 @@ class IRsend
 #		if SEND_LEGO_PF
 			void  sendLegoPowerFunctions (uint16_t data, bool repeat = true) ;
 #		endif
+//......................................................................
+#       if SEND_JAPANESE
+            void  sendJapanese (uint64_t data,  int nbits) ;
+#       endif
 } ;
 
 #endif
